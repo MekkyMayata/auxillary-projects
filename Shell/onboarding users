@@ -1,0 +1,83 @@
+#!/bin/bash --
+# This script automates the creation of new users on a Linux server
+
+# Note: 
+# Ensure a the file consisting of the usernames of user(s)
+# to create exists
+
+
+# set name of input data file
+INPUT_FILE=name.csv
+
+# set name of group
+GROUP_NAME=developers
+
+# store name of ssh directory in a variable
+SSH_IN_SKEL=/etc/skel/.ssh
+
+# store name of authorized key file in a variable
+AUTH_KEY=authorized.txt
+
+# set default user password. will be changed
+# on user login
+DEFAULT_PASSWORD='password'
+
+oldIFS=$IFS
+
+# check if group developers exists
+if [ $(getent group developers) ] ;
+then
+    echo "===> group $GROUP_NAME exists, skipping..."
+    echo 
+else 
+    echo "===> group $GROUP_NAME does not exist"
+    echo "===> creating group $GROUP_NAME"
+    sudo groupadd developers
+    sleep 1
+    echo
+fi
+
+# ensure csv file exists
+if [ -f "$INPUT_FILE" ] ; 
+    then 
+        echo "===> $INPUT_FILE found"
+else
+    echo "===> $INPUT_FILE file does not exist!"
+    exit 2
+fi
+
+# populate skel directory with ssh folder
+if [ -d "$SSH_IN_SKEL" ] ; 
+then
+    echo
+    echo "===> ssh folder exists, skipping..."
+    echo
+else
+    sudo mkdir -p $SSH_IN_SKEL
+    sudo bash -c "cat $AUTH_KEY >> $SSH_IN_SKEL/authorized_keys"
+    echo "successfully created $SSH_IN_SKEL directory"
+    echo 
+fi
+
+while IFS= read USERNAME
+    do
+        # check if username already exists
+        if [ $(getent passwd $USERNAME) ] ;  
+        then
+            echo "$USERNAME already exists, skipping..."
+            echo
+        else
+
+            echo "$USERNAME is being created"
+            sudo useradd -m -G $GROUP_NAME $USERNAME
+            sudo echo -e "$DEFAULT_PASSWORD\n$DEFAULT_PASSWORD" | sudo passwd "${USERNAME}"
+            sudo passwd -x 3 ${USERNAME}
+            sudo chmod 700 /home/$USERNAME/.ssh
+            sudo chmod 644 /home/$USERNAME/.ssh/authorized_keys
+            echo "Successfully created user $USERNAME"
+            echo 
+        fi
+        done < $INPUT_FILE
+
+echo "done"
+exit 0
