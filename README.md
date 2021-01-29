@@ -7,7 +7,7 @@
 - [Usage](#usage)
 - [Addon](#addon)
 - [Notes](#notes)
-- [Credits](#credits)
+- [Credit](#credits)
 
 
 ## Intro
@@ -52,4 +52,4 @@ Here are some useful reads;
 ### Credit:
 - [Darey.io](https://darey.io)
 
-
+🤗
