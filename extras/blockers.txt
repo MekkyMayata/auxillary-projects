@@ -1,6 +1,6 @@
 - Unsuprisingly, the fact that my script was empty at the onset of this project was the major blocker for me. 
 
-To solve this, I had break the project into smaller steps and also learn about some new concepts, e.g; the IFS special shell variable, and 
+To solve this, I had to break the project into smaller steps and also learn about some new concepts, e.g; the IFS special shell variable, and 
 handling files in bash. The following resources proved helpful in de-mystifying those concepts
 
 Reading files line by line in shell script:
