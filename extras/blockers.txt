@@ -1,0 +1,18 @@
+- Unsuprisingly, the fact that my script was empty at the onset of this project was the major blocker for me. 
+
+To solve this, I had break the project into smaller steps and also learn about some new concepts, e.g; the IFS special shell variable, and 
+handling files in bash. The following resources proved helpful in de-mystifying those concepts
+
+Reading files line by line in shell script:
+https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/
+
+How do I add new user accounts with SSH access to my Amazon EC2 Linux instance:
+https://aws.amazon.com/premiumsupport/knowledge-center/new-user-accounts-linux-instance/
+
+Amazon EC2 key pairs and Linux instances:
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#how-to-generate-your-own-key-and-import-it-to-aws
+
+
+IFS: 
+https://bash.cyberciti.biz/guide/$IFS
+
