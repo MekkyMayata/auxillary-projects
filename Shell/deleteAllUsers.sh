@@ -7,7 +7,7 @@
 # store name of ssh directory in a variable
 SSH_IN_SKEL=/etc/skel/.ssh
 
-INPUT_FILE=name.csv
+INPUT_FILE=names.csv
 
 oldIFS=$IFS
 

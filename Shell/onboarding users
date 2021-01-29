@@ -7,7 +7,7 @@
 
 
 # set name of input data file
-INPUT_FILE=name.csv
+INPUT_FILE=names.csv
 
 # set name of group
 GROUP_NAME=developers
